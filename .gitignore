@@ -1,0 +1,41 @@
+# Delphi / RAD Studio compiler outputs & binaries
+*.exe
+*.dcu
+*.~*
+*.local
+*.identcache
+*.stat
+*.tds
+*.map
+*.drc
+*.cfg
+*.rsm
+
+# History and backup folders
+__history/
+__recovery/
+ModelSupport*/
+
+# Build output directories
+Win32/
+Win64/
+Debug/
+Release/
+.vs/
+
+# Temporary files & tests
+*.tmp
+*.log
+
+# Auxiliary & helper scripts (excluded from repository)
+*.bat
+*.cmd
+*.ps1
+*.py
+agent_*.*
+test_*.*
+check_*.*
+inspect_*.*
+find_*.*
+resolve.*
+run_*.*
