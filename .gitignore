@@ -26,6 +26,7 @@ Release/
 # Temporary files & tests
 *.tmp
 *.log
+*.zip
 
 # Auxiliary & helper scripts (excluded from repository)
 *.bat
