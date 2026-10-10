@@ -29,6 +29,7 @@ Release/
 
 # Auxiliary & helper scripts (excluded from repository)
 *.bat
+!build.bat
 *.cmd
 *.ps1
 *.py

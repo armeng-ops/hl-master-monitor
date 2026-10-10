@@ -2,7 +2,7 @@
   Left = 200
   Top = 100
   BorderStyle = bsDialog
-  Caption = 'Настройки MSMonitor'
+  Caption = 'MSMonitor Settings'
   ClientHeight = 730
   ClientWidth = 540
   Color = clBtnFace
@@ -19,7 +19,7 @@
     Top = 10
     Width = 516
     Height = 135
-    Caption = ' Исполняемые файлы игр (.exe / .cmd) '
+    Caption = ' Game Executables (.exe / .cmd) '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -30,9 +30,9 @@
     object lblHL: TLabel
       Left = 14
       Top = 22
-      Width = 230
+      Width = 220
       Height = 13
-      Caption = 'Клиент Half-Life 1 (hl.exe, RUN_HL.exe):'
+      Caption = 'Half-Life 1 Executable (hl.exe, RUN_HL.exe):'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -43,9 +43,9 @@
     object lblCS: TLabel
       Left = 14
       Top = 74
-      Width = 243
+      Width = 240
       Height = 13
-      Caption = 'Клиент Counter-Strike 1.6 (hl.exe, cstrike.exe):'
+      Caption = 'Counter-Strike 1.6 Executable (hl.exe, cstrike.exe):'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -71,7 +71,7 @@
       Top = 39
       Width = 80
       Height = 23
-      Caption = 'Обзор...'
+      Caption = 'Browse...'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -99,7 +99,7 @@
       Top = 91
       Width = 80
       Height = 23
-      Caption = 'Обзор...'
+      Caption = 'Browse...'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -115,7 +115,7 @@
     Top = 152
     Width = 250
     Height = 195
-    Caption = ' Список MasterServer '
+    Caption = ' Master Servers '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -128,7 +128,7 @@
       Top = 20
       Width = 215
       Height = 13
-      Caption = 'Серверы (host:port, по одному на строку):'
+      Caption = 'Servers (host:port, one per line):'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -156,7 +156,7 @@
     Top = 152
     Width = 258
     Height = 195
-    Caption = ' Фильтры игр (gamedir) '
+    Caption = ' Game Filters (gamedir) '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -169,7 +169,7 @@
       Top = 20
       Width = 205
       Height = 13
-      Caption = 'Моды игр (по одному на строку):'
+      Caption = 'Game mods (one per line):'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -197,7 +197,7 @@
     Top = 354
     Width = 516
     Height = 135
-    Caption = ' Параметры опроса '
+    Caption = ' Query Settings '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -208,9 +208,9 @@
     object lblThreads: TLabel
       Left = 14
       Top = 24
-      Width = 149
+      Width = 150
       Height = 13
-      Caption = 'Потоки опроса (1-10 потоков):'
+      Caption = 'Query threads (1-10 threads):'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -221,9 +221,9 @@
     object lblTimeout: TLabel
       Left = 265
       Top = 24
-      Width = 144
+      Width = 145
       Height = 13
-      Caption = 'Таймаут опроса (A2S_INFO):'
+      Caption = 'Query timeout (A2S_INFO):'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -234,9 +234,9 @@
     object lblRegion: TLabel
       Left = 14
       Top = 76
-      Width = 41
+      Width = 40
       Height = 13
-      Caption = 'Регион:'
+      Caption = 'Region:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -249,7 +249,7 @@
       Top = 76
       Width = 145
       Height = 13
-      Caption = 'Лимит серверов на мастер:'
+      Caption = 'Server limit per master:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -272,16 +272,16 @@
       ParentFont = False
       TabOrder = 0
       Items.Strings = (
-        '1 поток'
-        '2 потока'
-        '3 потока'
-        '4 потока'
-        '5 потоков'
-        '6 потоков'
-        '7 потоков'
-        '8 потоков'
-        '9 потоков'
-        '10 потоков (Максимум)')
+        '1 thread'
+        '2 threads'
+        '3 threads'
+        '4 threads'
+        '5 threads'
+        '6 threads'
+        '7 threads'
+        '8 threads'
+        '9 threads'
+        '10 threads (Maximum)')
     end
     object cbTimeout: TComboBox
       Left = 265
@@ -298,9 +298,9 @@
       ParentFont = False
       TabOrder = 1
       Items.Strings = (
-        '350 мс (Быстрый)'
-        '600 мс (Обычный)'
-        '1000 мс (Глубокий)')
+        '350 ms (Fast)'
+        '600 ms (Normal)'
+        '1000 ms (Deep)')
     end
     object cbRegion: TComboBox
       Left = 14
@@ -317,11 +317,11 @@
       ParentFont = False
       TabOrder = 2
       Items.Strings = (
-        'Весь мир (0xFF)'
-        'Европа (0x03)'
-        'США Восток (0x00)'
-        'США Запад (0x01)'
-        'Азия (0x04)')
+        'Worldwide (0xFF)'
+        'Europe (0x03)'
+        'US East (0x00)'
+        'US West (0x01)'
+        'Asia (0x04)')
     end
     object cbLimit: TComboBox
       Left = 265
@@ -338,11 +338,11 @@
       ParentFont = False
       TabOrder = 3
       Items.Strings = (
-        '200 серверов'
-        '600 серверов'
-        '1000 серверов'
-        '3000 серверов'
-        'Все доступные')
+        '200 servers'
+        '600 servers'
+        '1000 servers'
+        '3000 servers'
+        'All available')
     end
   end
   object grpAppearance: TGroupBox
@@ -350,7 +350,7 @@
     Top = 495
     Width = 516
     Height = 56
-    Caption = ' Стиль оформления интерфейса '
+    Caption = ' Appearance Style '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -361,9 +361,9 @@
     object lblTheme: TLabel
       Left = 14
       Top = 23
-      Width = 110
+      Width = 40
       Height = 13
-      Caption = 'Тема оформления:'
+      Caption = 'Theme:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -386,8 +386,8 @@
       ParentFont = False
       TabOrder = 0
       Items.Strings = (
-        'Светлый стиль (по умолчанию)'
-        'Темный стиль (Windows 10 Dark)')
+        'Light Style (Default)'
+        'Dark Style (Windows 10 Dark)')
     end
   end
   object grpFilterOptions: TGroupBox
@@ -395,7 +395,7 @@
     Top = 557
     Width = 516
     Height = 120
-    Caption = ' Сортировка, фильтрация и автообновление '
+    Caption = ' Sorting, Filtering and Auto-Refresh '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -408,7 +408,7 @@
       Top = 18
       Width = 480
       Height = 17
-      Caption = 'Скрывать пустые серверы (0 игроков)'
+      Caption = 'Hide empty servers (0 players)'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -424,7 +424,7 @@
       Top = 38
       Width = 480
       Height = 17
-      Caption = 'Скрывать не ответившие серверы (таймаут опроса)'
+      Caption = 'Hide unresponsive servers (query timeout)'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -440,7 +440,7 @@
       Top = 58
       Width = 480
       Height = 17
-      Caption = 'Автоматический переопрос серверов в фоне каждую минуту'
+      Caption = 'Automatically refresh servers in background every minute'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -454,9 +454,9 @@
     object lblSort: TLabel
       Left = 14
       Top = 88
-      Width = 100
+      Width = 65
       Height = 13
-      Caption = 'Сортировка списка:'
+      Caption = 'List sorting:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -479,13 +479,13 @@
       ParentFont = False
       TabOrder = 3
       Items.Strings = (
-        'По пингу (по возрастанию, меньше - выше)'
-        'По игрокам (по убыванию, больше - выше)'
-        'По названию сервера (А-Я)'
-        'По карте (А-Я)'
-        'По моду / папке (А-Я)'
-        'По IP адресу и порту'
-        'По мастер-серверу (А-Я)')
+        'By ping (ascending, lowest ping first)'
+        'By players (descending, highest players first)'
+        'By server name (A-Z)'
+        'By map (A-Z)'
+        'By mod / folder (A-Z)'
+        'By IP address and port'
+        'By master server (A-Z)')
     end
   end
   object btnOK: TButton
@@ -493,7 +493,7 @@
     Top = 688
     Width = 95
     Height = 32
-    Caption = 'Сохранить'
+    Caption = 'Save'
     Default = True
     ModalResult = 1
     TabOrder = 6
@@ -504,14 +504,14 @@
     Width = 95
     Height = 32
     Cancel = True
-    Caption = 'Отмена'
+    Caption = 'Cancel'
     ModalResult = 2
     TabOrder = 7
   end
   object dlgOpen: TOpenDialog
     DefaultExt = 'exe'
-    Filter = 'Исполняемые файлы (*.exe;*.cmd;*.bat)|*.exe;*.cmd;*.bat|Все файлы (*.*)|*.*'
-    Title = 'Выберите исполняемый файл игры'
+    Filter = 'Executable Files (*.exe;*.cmd;*.bat)|*.exe;*.cmd;*.bat|All Files (*.*)|*.*'
+    Title = 'Select Game Executable'
     Left = 250
     Top = 688
   end

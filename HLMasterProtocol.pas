@@ -829,7 +829,7 @@ begin
         SetLength(Batch, Length(Batch) + 1);
         Batch[High(Batch)].IP := CurIP;
         Batch[High(Batch)].Port := CurPort;
-        Batch[High(Batch)].Name := '(Ожидает опроса...)';
+        Batch[High(Batch)].Name := '(Pending query...)';
         Batch[High(Batch)].Map := '-';
         Batch[High(Batch)].Folder := FilterName;
         Batch[High(Batch)].Game := '-';
@@ -948,7 +948,7 @@ begin
   begin
     FSyncTotalCount := 0;
     FSyncSuccess := False;
-    FSyncError := 'Не удалось инициализировать WinSock2';
+    FSyncError := 'Failed to initialize WinSock2';
     Synchronize(DoSyncFinished);
     Exit;
   end;
@@ -985,7 +985,7 @@ begin
     ActiveCount := Length(FMasterServers);
     SetLength(Workers, ActiveCount);
 
-    ReportStatus(Format('Параллельный опрос %d мастер-серверов...', [ActiveCount]), 0, ActiveCount);
+    ReportStatus(Format('Querying %d master servers in parallel...', [ActiveCount]), 0, ActiveCount);
 
     for i := 0 to ActiveCount - 1 do
       Workers[i] := TSingleMasterWorker.Create(Self, FMasterServers[i], FFilters, FRegion, FMaxServersPerMaster);
@@ -1316,7 +1316,7 @@ begin
   begin
     FCritSec.Enter;
     try
-      FSyncStatus := Format('Опрос серверов (A2S): %d / %d (Ответили: %d)...',
+      FSyncStatus := Format('Querying servers (A2S): %d / %d (Responded: %d)...',
         [Cur, Total, FSuccessCount]);
       FSyncProgress := Cur;
       FSyncTotal := Total;

@@ -79,86 +79,86 @@ implementation
 
 procedure TFormSettings.FormCreate(Sender: TObject);
 begin
-  Caption := 'Настройки MSMonitor';
-  grpGames.Caption := ' Исполняемые файлы игр (.exe / .cmd) ';
-  lblHL.Caption := 'Клиент Half-Life 1 (hl.exe, RUN_HL.exe):';
-  lblCS.Caption := 'Клиент Counter-Strike 1.6 (hl.exe, cstrike.exe):';
-  btnBrowseHL.Caption := 'Обзор...';
-  btnBrowseCS.Caption := 'Обзор...';
+  Caption := 'MSMonitor Settings';
+  grpGames.Caption := ' Game Executables (.exe / .cmd) ';
+  lblHL.Caption := 'Half-Life 1 Executable (hl.exe, RUN_HL.exe):';
+  lblCS.Caption := 'Counter-Strike 1.6 Executable (hl.exe, cstrike.exe):';
+  btnBrowseHL.Caption := 'Browse...';
+  btnBrowseCS.Caption := 'Browse...';
 
-  grpMasterServers.Caption := ' Список MasterServer ';
-  lblMasterList.Caption := 'Серверы (host:port, по одному на строку):';
+  grpMasterServers.Caption := ' Master Servers ';
+  lblMasterList.Caption := 'Servers (host:port, one per line):';
 
-  grpFilters.Caption := ' Фильтры игр (gamedir) ';
-  lblFilterList.Caption := 'Моды игр (по одному на строку):';
+  grpFilters.Caption := ' Game Filters (gamedir) ';
+  lblFilterList.Caption := 'Game mods (one per line):';
 
-  grpQuery.Caption := ' Параметры опроса ';
-  lblThreads.Caption := 'Потоки опроса (1-10 потоков):';
-  lblTimeout.Caption := 'Таймаут опроса (A2S_INFO):';
-  lblRegion.Caption := 'Регион:';
-  lblLimit.Caption := 'Лимит серверов на мастер:';
+  grpQuery.Caption := ' Query Settings ';
+  lblThreads.Caption := 'Query threads (1-10 threads):';
+  lblTimeout.Caption := 'Query timeout (A2S_INFO):';
+  lblRegion.Caption := 'Region:';
+  lblLimit.Caption := 'Server limit per master:';
 
-  grpAppearance.Caption := ' Стиль оформления интерфейса ';
-  lblTheme.Caption := 'Тема оформления:';
+  grpAppearance.Caption := ' Appearance Style ';
+  lblTheme.Caption := 'Theme:';
   cbTheme.Items.Clear;
-  cbTheme.Items.Add('Светлый стиль (по умолчанию)');
-  cbTheme.Items.Add('Темный стиль (Windows 10 Dark)');
+  cbTheme.Items.Add('Light Style (Default)');
+  cbTheme.Items.Add('Dark Style (Windows 10 Dark)');
   cbTheme.ItemIndex := 0;
 
-  grpFilterOptions.Caption := ' Сортировка, фильтрация и автообновление ';
-  chkHideEmpty.Caption := 'Скрывать пустые серверы (0 игроков)';
-  chkHideUnresponsive.Caption := 'Скрывать не ответившие серверы (таймаут опроса)';
-  chkAutoRefresh.Caption := 'Автоматический переопрос серверов в фоне каждую минуту';
-  lblSort.Caption := 'Сортировка списка:';
+  grpFilterOptions.Caption := ' Sorting, Filtering and Auto-Refresh ';
+  chkHideEmpty.Caption := 'Hide empty servers (0 players)';
+  chkHideUnresponsive.Caption := 'Hide unresponsive servers (query timeout)';
+  chkAutoRefresh.Caption := 'Automatically refresh servers in background every minute';
+  lblSort.Caption := 'List sorting:';
 
   cbSort.Items.Clear;
-  cbSort.Items.Add('По пингу (по возрастанию, меньше - выше)');
-  cbSort.Items.Add('По игрокам (по убыванию, больше - выше)');
-  cbSort.Items.Add('По названию сервера (А-Я)');
-  cbSort.Items.Add('По карте (А-Я)');
-  cbSort.Items.Add('По моду / папке (А-Я)');
-  cbSort.Items.Add('По IP адресу и порту');
-  cbSort.Items.Add('По мастер-серверу (А-Я)');
+  cbSort.Items.Add('By ping (ascending, lowest ping first)');
+  cbSort.Items.Add('By players (descending, highest players first)');
+  cbSort.Items.Add('By server name (A-Z)');
+  cbSort.Items.Add('By map (A-Z)');
+  cbSort.Items.Add('By mod / folder (A-Z)');
+  cbSort.Items.Add('By IP address and port');
+  cbSort.Items.Add('By master server (A-Z)');
   cbSort.ItemIndex := 0;
 
-  btnOK.Caption := 'Сохранить';
-  btnCancel.Caption := 'Отмена';
+  btnOK.Caption := 'Save';
+  btnCancel.Caption := 'Cancel';
 
   cbThreads.Items.Clear;
-  cbThreads.Items.Add('1 поток');
-  cbThreads.Items.Add('2 потока');
-  cbThreads.Items.Add('3 потока');
-  cbThreads.Items.Add('4 потока');
-  cbThreads.Items.Add('5 потоков');
-  cbThreads.Items.Add('6 потоков');
-  cbThreads.Items.Add('7 потоков');
-  cbThreads.Items.Add('8 потоков');
-  cbThreads.Items.Add('9 потоков');
-  cbThreads.Items.Add('10 потоков (Максимум)');
+  cbThreads.Items.Add('1 thread');
+  cbThreads.Items.Add('2 threads');
+  cbThreads.Items.Add('3 threads');
+  cbThreads.Items.Add('4 threads');
+  cbThreads.Items.Add('5 threads');
+  cbThreads.Items.Add('6 threads');
+  cbThreads.Items.Add('7 threads');
+  cbThreads.Items.Add('8 threads');
+  cbThreads.Items.Add('9 threads');
+  cbThreads.Items.Add('10 threads (Maximum)');
 
   cbTimeout.Items.Clear;
-  cbTimeout.Items.Add('350 мс (Быстрый)');
-  cbTimeout.Items.Add('600 мс (Обычный)');
-  cbTimeout.Items.Add('1000 мс (Глубокий)');
+  cbTimeout.Items.Add('350 ms (Fast)');
+  cbTimeout.Items.Add('600 ms (Normal)');
+  cbTimeout.Items.Add('1000 ms (Deep)');
 
   cbRegion.Items.Clear;
-  cbRegion.Items.Add('Весь мир (0xFF)');
-  cbRegion.Items.Add('Европа (0x03)');
-  cbRegion.Items.Add('США Восток (0x00)');
-  cbRegion.Items.Add('США Запад (0x01)');
-  cbRegion.Items.Add('Азия (0x04)');
+  cbRegion.Items.Add('Worldwide (0xFF)');
+  cbRegion.Items.Add('Europe (0x03)');
+  cbRegion.Items.Add('US East (0x00)');
+  cbRegion.Items.Add('US West (0x01)');
+  cbRegion.Items.Add('Asia (0x04)');
 
   cbLimit.Items.Clear;
-  cbLimit.Items.Add('200 серверов');
-  cbLimit.Items.Add('600 серверов');
-  cbLimit.Items.Add('1000 серверов');
-  cbLimit.Items.Add('3000 серверов');
-  cbLimit.Items.Add('Все доступные');
+  cbLimit.Items.Add('200 servers');
+  cbLimit.Items.Add('600 servers');
+  cbLimit.Items.Add('1000 servers');
+  cbLimit.Items.Add('3000 servers');
+  cbLimit.Items.Add('All available');
 end;
 
 procedure TFormSettings.btnBrowseHLClick(Sender: TObject);
 begin
-  dlgOpen.Title := 'Выберите клиент Half-Life 1 (hl.exe, RUN_HL.exe, .cmd)';
+  dlgOpen.Title := 'Select Half-Life 1 Executable (hl.exe, RUN_HL.exe, .cmd)';
   if (edtHL.Text <> '') and FileExists(edtHL.Text) then
   begin
     dlgOpen.InitialDir := ExtractFilePath(edtHL.Text);
@@ -173,7 +173,7 @@ end;
 
 procedure TFormSettings.btnBrowseCSClick(Sender: TObject);
 begin
-  dlgOpen.Title := 'Выберите клиент Counter-Strike 1.6 (hl.exe, cstrike.exe, .cmd)';
+  dlgOpen.Title := 'Select Counter-Strike 1.6 Executable (hl.exe, cstrike.exe, .cmd)';
   if (edtCS.Text <> '') and FileExists(edtCS.Text) then
   begin
     dlgOpen.InitialDir := ExtractFilePath(edtCS.Text);

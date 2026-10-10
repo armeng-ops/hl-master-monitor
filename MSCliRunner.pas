@@ -50,19 +50,19 @@ begin
   ConsolePrintln('');
   ConsolePrintln('Half-Life & GoldSrc MasterServer Monitor (CLI Mode)');
   ConsolePrintln('========================================================================');
-  ConsolePrintln('Использование:');
-  ConsolePrintln('  msmonitor.exe -cli [параметры] [хост[:порт]] [фильтр]');
+  ConsolePrintln('Usage:');
+  ConsolePrintln('  msmonitor.exe -cli [options] [host[:port]] [filter]');
   ConsolePrintln('');
-  ConsolePrintln('Параметры:');
-  ConsolePrintln('  -host:<адрес[:порт]>   Адрес MasterServer (по умолчанию: ms.cs16.net:27010)');
-  ConsolePrintln('  -filter:<фильтр>       Фильтр игры: valve, cstrike, ag, gearbox, dod, tfc');
-  ConsolePrintln('  -limit:<число>         Максимальное количество серверов (по умолчанию: 30)');
-  ConsolePrintln('  -threads:<1..10>       Количество потоков опроса (до 10 потоков, по умолчанию: 10)');
-  ConsolePrintln('  -region:<код>          Код региона (0xFF - весь мир, 0x03 - Европа)');
-  ConsolePrintln('  -timeout:<мс>          Таймаут опроса A2S (по умолчанию: 350 мс)');
-  ConsolePrintln('  -help, -h, -?          Показать эту справку');
+  ConsolePrintln('Options:');
+  ConsolePrintln('  -host:<address[:port]> Master Server address (default: ms.cs16.net:27010)');
+  ConsolePrintln('  -filter:<filter>       Game filter: valve, cstrike, ag, gearbox, dod, tfc');
+  ConsolePrintln('  -limit:<number>        Maximum number of servers (default: 30)');
+  ConsolePrintln('  -threads:<1..10>       Number of query threads (up to 10 threads, default: 10)');
+  ConsolePrintln('  -region:<code>         Region code (0xFF - Worldwide, 0x03 - Europe)');
+  ConsolePrintln('  -timeout:<ms>          A2S query timeout in milliseconds (default: 350 ms)');
+  ConsolePrintln('  -help, -h, -?          Show this help message');
   ConsolePrintln('');
-  ConsolePrintln('Примеры:');
+  ConsolePrintln('Examples:');
   ConsolePrintln('  msmonitor.exe -cli');
   ConsolePrintln('  msmonitor.exe -cli masterserver.csboost.eu:27010 cstrike');
   ConsolePrintln('  msmonitor.exe -cli -threads:10 -timeout:350 -limit:50');
@@ -245,7 +245,7 @@ begin
   ConsolePrintln('=======================================================================================');
   ConsolePrintln('     Half-Life & GoldSrc MasterServer Monitor (Unified CLI Engine)');
   ConsolePrintln('=======================================================================================');
-  ConsolePrintln(Format('Мастер-сервер: %s:%d | Фильтр: "%s" | Лимит: %d | Таймаут: %d мс | Потоков: %d',
+  ConsolePrintln(Format('Master Server: %s:%d | Filter: "%s" | Limit: %d | Timeout: %d ms | Threads: %d',
     [Host, Port, Filter, Limit, TimeoutMs, Threads]));
   ConsolePrintln('---------------------------------------------------------------------------------------');
 
@@ -271,11 +271,11 @@ begin
 
     if not Sync.FMasterSuccess or (Length(Sync.FServers) = 0) then
     begin
-      ConsolePrintln('Серверы не найдены (Мастер-сервер вернул пустой список).');
+      ConsolePrintln('No servers found (Master Server returned empty list).');
       Exit;
     end;
 
-    ConsolePrintln(Format('Получено серверов: %d. Мультипоточный опрос A2S (%d потоков)...',
+    ConsolePrintln(Format('Retrieved servers: %d. Multithreaded A2S query (%d threads)...',
       [Length(Sync.FServers), Threads]));
     ConsolePrintln('---------------------------------------------------------------------------------------');
 
@@ -297,7 +297,7 @@ begin
       QuickSortServersByPing(Sync.FActiveServers, 0, High(Sync.FActiveServers));
 
     ConsolePrintln('---------------------------------------------------------------------------------------');
-    ConsolePrintln(Format('%-4s %-22s %-30s %-14s %-9s %s', ['#', 'IP:Port', 'Имя сервера', 'Карта', 'Игроки', 'Пинг']));
+    ConsolePrintln(Format('%-4s %-22s %-30s %-14s %-9s %s', ['#', 'IP:Port', 'Server Name', 'Map', 'Players', 'Ping']));
     ConsolePrintln('---------------------------------------------------------------------------------------');
 
     for i := 0 to High(Sync.FActiveServers) do
@@ -313,11 +313,11 @@ begin
     end;
 
     if Length(Sync.FActiveServers) < Length(Sync.FServers) then
-      ConsolePrintln(Format('(%d серверов не ответили на запрос A2S)',
+      ConsolePrintln(Format('(%d servers did not respond to A2S query)',
         [Length(Sync.FServers) - Length(Sync.FActiveServers)]));
 
     ConsolePrintln('=======================================================================================');
-    ConsolePrintln(Format('Завершено. Активных серверов: %d из %d (отсортировано по пингу).',
+    ConsolePrintln(Format('Completed. Active servers: %d of %d (sorted by ping).',
       [Length(Sync.FActiveServers), Length(Sync.FServers)]));
     ConsolePrintln('');
 

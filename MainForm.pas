@@ -533,7 +533,7 @@ var
 begin
   Result := False;
   if not Assigned(Item) then Exit;
-  Idx := NativeInt(Item.Data);
+  Idx := Integer(NativeInt(Item.Data));
   if (Idx >= 0) and (Idx < Length(FServers)) then
     Result := FServers[Idx].IsFavorite
   else if Item.SubItems.Count > 0 then
@@ -548,8 +548,8 @@ var
 begin
   if lvServers.SelCount = 0 then
   begin
-    btnFavorite.Caption := '★ В избранное';
-    miFavorite.Caption := '★ В избранное';
+    btnFavorite.Caption := '★ Favorite';
+    miFavorite.Caption := '★ Add to Favorites';
     Exit;
   end;
 
@@ -569,13 +569,13 @@ begin
 
   if AllAreFav then
   begin
-    btnFavorite.Caption := '★ Из избранного';
-    miFavorite.Caption := '★ Из избранного';
+    btnFavorite.Caption := '★ Unfavorite';
+    miFavorite.Caption := '★ Remove from Favorites';
   end
   else
   begin
-    btnFavorite.Caption := '★ В избранное';
-    miFavorite.Caption := '★ В избранное';
+    btnFavorite.Caption := '★ Favorite';
+    miFavorite.Caption := '★ Add to Favorites';
   end;
 end;
 
@@ -594,7 +594,7 @@ var
 begin
   if lvServers.SelCount = 0 then
   begin
-    ShowMessage('Выберите сервер(ы) в списке для добавления или удаления из Избранного!');
+    ShowMessage('Select server(s) from the list to add or remove from Favorites!');
     Exit;
   end;
 
@@ -618,7 +618,7 @@ begin
     Item := lvServers.Items[i];
     if Item.Selected then
     begin
-      Idx := NativeInt(Item.Data);
+      Idx := Integer(NativeInt(Item.Data));
       Key := Item.SubItems[0];
       if AllAreFav then
       begin
@@ -659,13 +659,13 @@ var
 begin
   if not Assigned(lvServers.Selected) then Exit;
   Item := lvServers.Selected;
-  ServerIdx := NativeInt(Item.Data);
+  ServerIdx := Integer(NativeInt(Item.Data));
   if (ServerIdx < 0) or (ServerIdx >= Length(FServers)) then Exit;
 
   if Assigned(FInfoThread) then
   begin
     FInfoThread.EnqueueServer(ServerIdx, FServers[ServerIdx]);
-    sbStatus.Panels[0].Text := Format(' Сервер %s добавлен в очередь обновления...', [Item.SubItems[0]]);
+    sbStatus.Panels[0].Text := Format(' Server %s added to update queue...', [Item.SubItems[0]]);
   end
   else
   begin
@@ -675,7 +675,7 @@ begin
     );
     SingleThread.EnqueueServer(ServerIdx, FServers[ServerIdx]);
     SingleThread.SetMasterScanFinished;
-    sbStatus.Panels[0].Text := Format(' Обновление сервера %s...', [Item.SubItems[0]]);
+    sbStatus.Panels[0].Text := Format(' Refreshing server %s...', [Item.SubItems[0]]);
   end;
 end;
 
@@ -769,38 +769,38 @@ begin
 
   Caption := 'Half-Life & GoldSrc MasterServer Monitor';
 
-  btnFetch.Caption := 'Опросить серверы';
-  btnStop.Caption := 'Остановить';
-  btnFavorite.Caption := '★ В избранное';
-  btnSettings.Caption := 'Настройки...';
-  btnConnect.Caption := 'Подключиться';
-  btnCopy.Caption := 'Копировать IP:Port';
-  btnExport.Caption := 'Экспорт...';
-  btnClear.Caption := 'Очистить';
+  btnFetch.Caption := 'Query Servers';
+  btnStop.Caption := 'Stop';
+  btnFavorite.Caption := '★ Favorite';
+  btnSettings.Caption := 'Settings...';
+  btnConnect.Caption := 'Connect';
+  btnCopy.Caption := 'Copy IP:Port';
+  btnExport.Caption := 'Export...';
+  btnClear.Caption := 'Clear';
 
   if lvServers.Columns.Count >= 9 then
   begin
     lvServers.Columns[0].Caption := '#';
-    lvServers.Columns[1].Caption := 'IP:Порт';
-    lvServers.Columns[2].Caption := 'Название сервера';
-    lvServers.Columns[3].Caption := 'Карта';
-    lvServers.Columns[4].Caption := 'Игроки';
-    lvServers.Columns[5].Caption := 'Пинг';
-    lvServers.Columns[6].Caption := 'Мод';
-    lvServers.Columns[7].Caption := 'Игра';
-    lvServers.Columns[8].Caption := 'Мастер-сервер';
+    lvServers.Columns[1].Caption := 'IP:Port';
+    lvServers.Columns[2].Caption := 'Server Name';
+    lvServers.Columns[3].Caption := 'Map';
+    lvServers.Columns[4].Caption := 'Players';
+    lvServers.Columns[5].Caption := 'Ping';
+    lvServers.Columns[6].Caption := 'Mod';
+    lvServers.Columns[7].Caption := 'Game';
+    lvServers.Columns[8].Caption := 'Master Server';
   end;
 
   if sbStatus.Panels.Count >= 4 then
   begin
-    sbStatus.Panels[0].Text := ' Готов к работе.';
-    sbStatus.Panels[1].Text := ' Серверов: 0';
-    sbStatus.Panels[2].Text := ' Ответили: 0';
-    sbStatus.Panels[3].Text := Format(' Мастер-серверов: %d', [Length(FMasterServers)]);
+    sbStatus.Panels[0].Text := ' Ready.';
+    sbStatus.Panels[1].Text := ' Servers: 0';
+    sbStatus.Panels[2].Text := ' Responded: 0';
+    sbStatus.Panels[3].Text := Format(' Master Servers: %d', [Length(FMasterServers)]);
   end;
 
-  dlgSave.Filter := 'Текстовый файл (*.txt)|*.txt|Файл CSV (*.csv)|*.csv|Все файлы (*.*)|*.*';
-  dlgSave.Title := 'Экспорт списка серверов';
+  dlgSave.Filter := 'Text File (*.txt)|*.txt|CSV File (*.csv)|*.csv|All Files (*.*)|*.*';
+  dlgSave.Title := 'Export Server List';
 
   DoubleBuffered := True;
   pnlButtons.DoubleBuffered := True;
@@ -966,7 +966,7 @@ var
 begin
   if Length(FMasterServers) = 0 then
   begin
-    ShowMessage('Список MasterServer пуст! Откройте "Настройки..." и добавьте адреса.');
+    ShowMessage('Master server list is empty! Open "Settings..." and add addresses.');
     Exit;
   end;
 
@@ -975,8 +975,8 @@ begin
   pbProgress.Position := 0;
   pbProgress.Max := 100;
 
-  sbStatus.Panels[3].Text := Format(' Мастер-серверов: %d', [Length(FMasterServers)]);
-  sbStatus.Panels[0].Text := Format(' Обновление и поиск на %d мастер-серверах (%d потоков)...',
+  sbStatus.Panels[3].Text := Format(' Master Servers: %d', [Length(FMasterServers)]);
+  sbStatus.Panels[0].Text := Format(' Querying %d master servers (%d threads)...',
     [Length(FMasterServers), FThreadCount]);
 
   // 1. Immediately create and launch A2S worker pool (streaming consumer)
@@ -1062,7 +1062,7 @@ begin
         if FServers[i].Responded then
         begin
           Item.SubItems.Add(Format('%d / %d', [FServers[i].Players, FServers[i].MaxPlayers]));
-          Item.SubItems.Add(Format('%d мс', [FServers[i].Ping]));
+          Item.SubItems.Add(Format('%d ms', [FServers[i].Ping]));
         end
         else
         begin
@@ -1081,7 +1081,7 @@ begin
     lvServers.Items.EndUpdate;
   end;
 
-  sbStatus.Panels[1].Text := Format(' Серверов: %d (в списке: %d)', [Length(FServers), lvServers.Items.Count]);
+  sbStatus.Panels[1].Text := Format(' Servers: %d (in list: %d)', [Length(FServers), lvServers.Items.Count]);
 end;
 
 procedure TFormMain.OnMasterBatch(const Servers: TServerArray);
@@ -1163,7 +1163,7 @@ begin
   if not FHideUnresponsive then
     RequestSort;
 
-  sbStatus.Panels[1].Text := Format(' Серверов: %d (в списке: %d)', [Length(FServers), lvServers.Items.Count]);
+  sbStatus.Panels[1].Text := Format(' Servers: %d (in list: %d)', [Length(FServers), lvServers.Items.Count]);
 end;
 
 procedure TFormMain.OnWorkerStatus(const StatusText: string; Progress, Total: Integer);
@@ -1197,7 +1197,7 @@ begin
   begin
     SetWorking(False);
     pbProgress.Position := 0;
-    sbStatus.Panels[0].Text := ' Ошибка MasterServer: ' + ErrorMsg;
+    sbStatus.Panels[0].Text := ' Master server error: ' + ErrorMsg;
   end;
 end;
 
@@ -1215,7 +1215,7 @@ begin
   if Server.Responded then
   begin
     Inc(FRespondedCount);
-    sbStatus.Panels[2].Text := Format(' Ответили: %d', [FRespondedCount]);
+    sbStatus.Panels[2].Text := Format(' Responded: %d', [FRespondedCount]);
   end;
 
   if FServers[Index].IsFavorite then
@@ -1244,7 +1244,7 @@ begin
       if Server.Responded then
       begin
         Item.SubItems.Add(Format('%d / %d', [Server.Players, Server.MaxPlayers]));
-        Item.SubItems.Add(Format('%d мс', [Server.Ping]));
+        Item.SubItems.Add(Format('%d ms', [Server.Ping]));
       end
       else
       begin
@@ -1268,7 +1268,7 @@ begin
       begin
         var S1: string := Format('%d / %d', [Server.Players, Server.MaxPlayers]);
         if Item.SubItems[3] <> S1 then Item.SubItems[3] := S1;
-        var S2: string := Format('%d мс', [Server.Ping]);
+        var S2: string := Format('%d ms', [Server.Ping]);
         if Item.SubItems[4] <> S2 then Item.SubItems[4] := S2;
       end
       else
@@ -1294,7 +1294,7 @@ begin
   // Throttled live sorting without screen flicker
   RequestSort;
 
-  sbStatus.Panels[1].Text := Format(' Серверов: %d (в списке: %d)', [Length(FServers), lvServers.Items.Count]);
+  sbStatus.Panels[1].Text := Format(' Servers: %d (in list: %d)', [Length(FServers), lvServers.Items.Count]);
 end;
 
 procedure TFormMain.OnInfoFinished(TotalCount: Integer; Success: Boolean; const ErrorMsg: string);
@@ -1305,9 +1305,9 @@ begin
 
   DoApplySort;
 
-  sbStatus.Panels[1].Text := Format(' Серверов: %d (в списке: %d)', [Length(FServers), lvServers.Items.Count]);
-  sbStatus.Panels[2].Text := Format(' Ответили: %d', [FRespondedCount]);
-  sbStatus.Panels[0].Text := Format(' Опрос завершен. Ответили: %d из %d (в списке: %d).',
+  sbStatus.Panels[1].Text := Format(' Servers: %d (in list: %d)', [Length(FServers), lvServers.Items.Count]);
+  sbStatus.Panels[2].Text := Format(' Responded: %d', [FRespondedCount]);
+  sbStatus.Panels[0].Text := Format(' Scan completed. Responded: %d of %d (in list: %d).',
     [FRespondedCount, Length(FServers), lvServers.Items.Count]);
 end;
 
@@ -1912,7 +1912,7 @@ begin
 
   SetWorking(False);
   pbProgress.Position := 0;
-  sbStatus.Panels[0].Text := ' Остановлено пользователем.';
+  sbStatus.Panels[0].Text := ' Stopped by user.';
 end;
 
 procedure TFormMain.btnSettingsClick(Sender: TObject);
@@ -1961,9 +1961,9 @@ begin
       RebuildListView;
       ApplySort;
 
-      sbStatus.Panels[0].Text := Format(' Настройки сохранены (Мастеров: %d, Модов: %d, Потоков: %d).',
+      sbStatus.Panels[0].Text := Format(' Settings saved (Masters: %d, Mods: %d, Threads: %d).',
         [Length(FMasterServers), Length(FGameFilters), FThreadCount]);
-      sbStatus.Panels[3].Text := Format(' Мастер-серверов: %d', [Length(FMasterServers)]);
+      sbStatus.Panels[3].Text := Format(' Master Servers: %d', [Length(FMasterServers)]);
     end;
   finally
     Dlg.Free;
@@ -1980,7 +1980,7 @@ var
 begin
   if not Assigned(lvServers.Selected) then
   begin
-    ShowMessage('Выберите сервер из списка для подключения!');
+    ShowMessage('Please select a server from the list to connect!');
     Exit;
   end;
 
@@ -2012,8 +2012,8 @@ begin
         TargetExe := FHLPath
       else
       begin
-        if MessageDlg('Не указан исполняемый файл для Counter-Strike 1.6.' + sLineBreak +
-           'Открыть настройки сейчас?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+        if MessageDlg('Counter-Strike 1.6 executable is not configured.' + sLineBreak +
+           'Open Settings now?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
         begin
           btnSettingsClick(nil);
           TargetExe := FCSPath;
@@ -2021,7 +2021,7 @@ begin
 
         if (TargetExe = '') or not FileExists(TargetExe) then
         begin
-          ShowMessage('Команда подключения скопирована в буфер обмена:' + sLineBreak + 'connect ' + Addr);
+          ShowMessage('Connect command copied to clipboard:' + sLineBreak + 'connect ' + Addr);
           Exit;
         end;
       end;
@@ -2036,8 +2036,8 @@ begin
         TargetExe := FCSPath
       else
       begin
-        if MessageDlg('Не указан исполняемый файл для Half-Life.' + sLineBreak +
-           'Открыть настройки сейчас?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+        if MessageDlg('Half-Life executable is not configured.' + sLineBreak +
+           'Open Settings now?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
         begin
           btnSettingsClick(nil);
           TargetExe := FHLPath;
@@ -2045,7 +2045,7 @@ begin
 
         if (TargetExe = '') or not FileExists(TargetExe) then
         begin
-          ShowMessage('Команда подключения скопирована в буфер обмена:' + sLineBreak + 'connect ' + Addr);
+          ShowMessage('Connect command copied to clipboard:' + sLineBreak + 'connect ' + Addr);
           Exit;
         end;
       end;
@@ -2075,7 +2075,7 @@ begin
     ShellExecuteW(0, 'open', PChar(TargetExe), PChar(Cmd), PChar(Dir), SW_SHOWNORMAL);
   end;
 
-  sbStatus.Panels[0].Text := Format(' Запуск %s (%s+connect %s - %s)',
+  sbStatus.Panels[0].Text := Format(' Launching %s (%s+connect %s - %s)',
     [ExtractFileName(TargetExe), GameParam, Addr, ServerName]);
 end;
 
@@ -2087,10 +2087,10 @@ begin
   begin
     Addr := lvServers.Selected.SubItems[0];
     Clipboard.AsText := Addr;
-    sbStatus.Panels[0].Text := ' Скопировано в буфер обмена: ' + Addr;
+    sbStatus.Panels[0].Text := ' Copied to clipboard: ' + Addr;
   end
   else
-    ShowMessage('Выберите сервер в списке!');
+    ShowMessage('Please select a server from the list!');
 end;
 
 procedure TFormMain.btnExportClick(Sender: TObject);
@@ -2103,7 +2103,7 @@ var
 begin
   if lvServers.Items.Count = 0 then
   begin
-    ShowMessage('Список серверов пуст!');
+    ShowMessage('Server list is empty!');
     Exit;
   end;
 
@@ -2160,7 +2160,7 @@ begin
       end;
 
       Lines.SaveToFile(dlgSave.FileName, TEncoding.UTF8);
-      sbStatus.Panels[0].Text := ' Экспортировано в: ' + dlgSave.FileName;
+      sbStatus.Panels[0].Text := ' Exported to: ' + dlgSave.FileName;
     finally
       Lines.Free;
     end;
@@ -2196,11 +2196,11 @@ begin
       Inc(FRespondedCount);
 
   if Length(FServers) > 0 then
-    sbStatus.Panels[0].Text := ' Список очищен (Избранные серверы сохранены).'
+    sbStatus.Panels[0].Text := ' List cleared (Favorites preserved).'
   else
-    sbStatus.Panels[0].Text := ' Список очищен.';
-  sbStatus.Panels[1].Text := Format(' Серверов: %d', [Length(FServers)]);
-  sbStatus.Panels[2].Text := Format(' Ответили: %d', [FRespondedCount]);
+    sbStatus.Panels[0].Text := ' List cleared.';
+  sbStatus.Panels[1].Text := Format(' Servers: %d', [Length(FServers)]);
+  sbStatus.Panels[2].Text := Format(' Responded: %d', [FRespondedCount]);
   pbProgress.Position := 0;
 end;
 
