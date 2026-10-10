@@ -1,5 +1,7 @@
 # Half-Life & GoldSrc MasterServer Monitor (MSMonitor)
 
+![MSMonitor Screenshot](screenshot.jpg)
+
 A fast, multithreaded server browser and monitor for GoldSrc engines (Half-Life 1, Counter-Strike 1.6, Adrenaline Gamer, Opposing Force, Day of Defeat, Team Fortress Classic) built on the Valve Master Server Query and A2S_INFO protocols.
 
 MSMonitor combines a **feature-rich GUI desktop application** and a **high-speed CLI utility** in a single unified binary.
